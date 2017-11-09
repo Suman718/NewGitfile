@@ -1,0 +1,107 @@
+package com.selenium.test;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import scriptbase.DemoTest;
+
+import java.util.List;
+
+public class ComboBox extends DemoTest{
+
+    public void setUp(){
+
+        super.setUp();
+
+
+
+
+        driver.navigate().to("http://spree.shiftedtech.com/");
+
+
+    }
+
+    @Test
+    public void test1(){
+
+        driver.findElement(By.xpath("//a[@class='btn btn-primary clicked']")).click();
+
+        String actualResult = driver.findElement(By.xpath(".//*[@id='alert-btn-clicked']")).getText().trim();
+        String expectedResult = "Button is clicked. You have 10 seconds to verify it.";
+        //Assert.assertEquals(expectedResult,actualResult);
+
+        if(actualResult.contains(actualResult)){
+            Assert.assertTrue(expectedResult, true);
+
+        }
+
+
+    }
+    @Test
+    public  void  test2() {
+
+        WebElement primaryButton = driver.findElement(By.xpath(".//*[@class='btn btn-primary dropdown-toggle']"));
+        primaryButton.click();
+
+        List<WebElement> allList = primaryButton.findElements(By.xpath("./../ul/li"));
+
+        for (WebElement element : allList) {
+            if (element.getText().contentEquals("something els here")) {
+                System.out.println("page found");
+                element.click();
+                continue;
+            }else {
+                System.out.println("Element did not find");
+            }
+        }
+
+    }
+
+    @Test
+    public void test3(){
+        WebElement elements = driver.findElement(By.xpath("//select[@id='taxon']"));
+
+
+
+        Select options = new Select(elements);
+        options.selectByVisibleText("Brand");
+
+    }
+
+    @Test
+    public void test4 (){
+        WebElement element = driver.findElement(By.xpath("//select[@id='taxon']"));
+
+        Select options = new Select(element);
+        options.selectByVisibleText("Categories");
+    }
+
+    @Test
+    public void test5(){
+        WebElement element = driver.findElement(By.xpath("//select[@id='taxon']"));
+
+        Select options = new Select(element);
+        options.selectByVisibleText("All department");
+    }
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
